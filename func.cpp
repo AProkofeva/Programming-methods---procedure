@@ -26,7 +26,6 @@ void In_Diagonal(diagonal_matr* &mas,ifstream &ifst)
 		ifst >> mas->A[i];
 	}
 }
-
 void Out_mas(dv_massiv* &mas, ofstream &ofst)
 {
 	ofst << "It is a usual square matrix! Number of rows (columns) = " << mas->n << endl << "Matrix:" << endl;
@@ -50,6 +49,7 @@ void Out_diagonal(diagonal_matr* &mas, ofstream &ofst)
 		ofst << endl;
 	}
 }
+
 matr* ReadM(ifstream& ifst)
 {
 	matr *matrix;
@@ -100,6 +100,49 @@ void OutM(matr *mas, ofstream &ofst)
 		}
 		default:
 			ofst << "It is incorrect matrix!" <<endl; 
+	}
+}
+int Sum_Diagonal(diagonal_matr* &mas)
+{
+	int sum = 0;
+	for (int i = 0; i < mas->n; i++)
+	{
+		sum = sum + mas->A[i];
+	}
+	return sum;
+}
+int Sum_mas(dv_massiv* &mas)
+{
+	int sum = 0;
+	for( int i = 0; i < mas->n; i++)
+	{
+		for (int j = 0; j < mas->n; j++)
+		{
+			sum = sum + mas->A[i][j];
+		}
+	}
+	return sum;
+}
+int Sum(matr *mas)
+{
+	dv_massiv *square;
+	diagonal_matr *diag;
+	switch(mas->key)
+	{
+		case USUAL:
+		{
+			square = (dv_massiv*)mas;
+			int sum = Sum_mas(square);
+			return sum;
+		}
+		case DIAGONAL:
+		{
+			diag = (diagonal_matr*)mas;
+			int sum = Sum_Diagonal(diag);
+			return sum;
+		}
+		default:
+			return -1; 
 	}
 }
 struct container * init() 
@@ -165,6 +208,8 @@ void Out(container* &c, ofstream &ofst, int len)
 	{
 		ofst << p->len+1 << ": ";
 		OutM(p->cont, ofst); // вывод значения элемента p
+		int sum = Sum (p->cont);
+		ofst << "Sum of elements = " << sum << endl;
 		p = p->next; // переход к следующему узлу
 	} 
 }
