@@ -1,0 +1,17 @@
+Filled container. 
+Container contains 3 elements.
+0: It is diagonal matrix! Number of elements = 2
+Matrix:
+3	0	
+0	4	
+1: It is a usual square matrix! Number of elements = 2
+Matrix:
+1	1	
+1	1	
+2: It is diagonal matrix! Number of elements = 3
+Matrix:
+1	0	0	
+0	2	0	
+0	0	3	
+Empty container. 
+Container contains 0 elements.
