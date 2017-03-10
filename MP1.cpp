@@ -26,10 +26,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	c = init();
 	int len = In(c, ifst);
     ofst << "Filled container. " << endl;
-	Out(c, ofst, len);
+	Out(c, ofst);
+	ofst << "Only usual matrix. " << endl;
+	OutFirst(c,ofst);
 	Clear(c);
     ofst << "Empty container. " << endl;
-	Out(c, ofst,0);
+	Out(c, ofst);
 	cout << "Stop"<< endl;
 	return 0;
 }

@@ -4,7 +4,6 @@
 using namespace std;
 // значения ключей для каждой из матриц
 enum type {USUAL, DIAGONAL};
-
 struct dv_massiv 
 {
 	type key;
@@ -40,4 +39,5 @@ void OutM(matr *mas, ofstream &ofst);
 struct container * init();
 void Clear(container* &c);
 int In(container* &c, ifstream &ifst);
-void Out(container* &c, ofstream &ofst, int len);
+void Out(container* &c, ofstream &ofst);
+void OutFirst(container* &c, ofstream &ofst);
