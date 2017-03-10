@@ -213,3 +213,40 @@ void Out(container* &c, ofstream &ofst, int len)
 		p = p->next; // переход к следующему узлу
 	} 
 }
+bool Compare(matr *mas1, matr *mas2)
+{
+	int s = Sum(mas1);
+	int sk = Sum(mas2);
+	return (s>sk);
+}
+void Sort(container* &c, int len)
+{
+	container *p;
+	p = c;
+	bool flag;
+	do
+	{
+		flag = false;
+		for( int i = 0; i < len-1; i++)
+				p = p ->prev;
+		while (p->next != NULL)
+		{
+			matr *one;
+			one = p->cont;
+			p = p->next;
+			matr *two;
+			two = p->cont;
+			bool k = Compare(one, two);
+			if (k == true)
+			{
+				p->cont = one;
+				p = p->prev;
+				p->cont = two;
+				flag = true;
+			}
+			else
+				p = p->prev;
+			p = p->next; // переход к следующему узлу
+		}
+	} while (flag);
+}

@@ -38,3 +38,4 @@ struct container * init();
 void Clear(container* &c);
 int In(container* &c, ifstream &ifst);
 void Out(container* &c, ofstream &ofst, int len);
+void Sort(container* &c, int len);

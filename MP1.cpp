@@ -27,6 +27,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	int len = In(c, ifst);
     ofst << "Filled container. " << endl;
 	Out(c, ofst, len);
+	ofst << "Sorted container. " << endl;
+	Sort(c, len);
+	Out(c, ofst, len);
 	Clear(c);
     ofst << "Empty container. " << endl;
 	Out(c, ofst,0);

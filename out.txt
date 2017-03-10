@@ -1,17 +1,86 @@
 Filled container. 
-Container contains 3 elements.
-0: It is diagonal matrix! Number of elements = 2
+Container contains 6 elements.
+1: It is diagonal matrix! Number of rows (columns) = 3
 Matrix:
-3	0	
-0	4	
-1: It is a usual square matrix! Number of elements = 2
-Matrix:
-1	1	
-1	1	
-2: It is diagonal matrix! Number of elements = 3
-Matrix:
-1	0	0	
-0	2	0	
+7	0	0	
+0	5	0	
 0	0	3	
+Sum of elements = 15
+2: It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+Sum of elements = 32
+3: It is diagonal matrix! Number of rows (columns) = 7
+Matrix:
+1	0	0	0	0	0	0	
+0	2	0	0	0	0	0	
+0	0	3	0	0	0	0	
+0	0	0	4	0	0	0	
+0	0	0	0	5	0	0	
+0	0	0	0	0	6	0	
+0	0	0	0	0	0	7	
+Sum of elements = 28
+4: It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+Sum of elements = 465
+5: It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+4	0	0	0	
+0	3	0	0	
+0	0	2	0	
+0	0	0	1	
+Sum of elements = 10
+6: It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+4	0	0	
+0	3	0	
+0	0	5	
+Sum of elements = 12
+Sorted container. 
+Container contains 6 elements.
+1: It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+4	0	0	0	
+0	3	0	0	
+0	0	2	0	
+0	0	0	1	
+Sum of elements = 10
+2: It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+4	0	0	
+0	3	0	
+0	0	5	
+Sum of elements = 12
+3: It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+7	0	0	
+0	5	0	
+0	0	3	
+Sum of elements = 15
+4: It is diagonal matrix! Number of rows (columns) = 7
+Matrix:
+1	0	0	0	0	0	0	
+0	2	0	0	0	0	0	
+0	0	3	0	0	0	0	
+0	0	0	4	0	0	0	
+0	0	0	0	5	0	0	
+0	0	0	0	0	6	0	
+0	0	0	0	0	0	7	
+Sum of elements = 28
+5: It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+Sum of elements = 32
+6: It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+Sum of elements = 465
 Empty container. 
 Container contains 0 elements.
