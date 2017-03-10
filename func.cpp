@@ -26,7 +26,6 @@ void In_Diagonal(diagonal_matr* &mas,ifstream &ifst)
 		ifst >> mas->A[i];
 	}
 }
-
 void Out_mas(dv_massiv* &mas, ofstream &ofst)
 {
 	ofst << "It is a usual square matrix! Number of rows (columns) = " << mas->n << endl << "Matrix:" << endl;
@@ -50,13 +49,16 @@ void Out_diagonal(diagonal_matr* &mas, ofstream &ofst)
 		ofst << endl;
 	}
 }
+
 matr* ReadM(ifstream& ifst)
 {
-	matr *matrix;
+	matr *matrix = new matr;
 	dv_massiv *square;
 	diagonal_matr *diag;
 	int key;
 	ifst >> key;
+	int outmas;
+	ifst >> outmas;
 	switch (key)
 	{
 		case 1:
@@ -65,6 +67,26 @@ matr* ReadM(ifstream& ifst)
 			diag = new diagonal_matr;
 			diag->key = DIAGONAL;
 			In_Diagonal(diag,ifst);
+			switch (outmas)
+			{
+				case 1:
+				{
+					diag->outm = LINE_BY_LINE;
+					break;
+				}
+				case 2:
+				{
+					diag->outm = BY_COLUMN;
+					break;
+				}
+				case 3:
+				{
+					diag->outm = ONE_MASSIV;
+					break;
+				}
+				default:
+					return 0;
+			}
 			return (matr*)diag;
 		}
 		
@@ -73,6 +95,26 @@ matr* ReadM(ifstream& ifst)
 			square = new dv_massiv;
 			square->key = USUAL;
 			In_Mas(square,ifst);
+			switch (outmas)
+			{
+				case 1:
+				{
+					square->outm = LINE_BY_LINE;
+					break;
+				}
+				case 2:
+				{
+					square->outm = BY_COLUMN;
+					break;
+				}
+				case 3:
+				{
+					square->outm = ONE_MASSIV;
+					break;
+				}
+				default:
+					return 0;
+			}
 			return (matr*)square;
 		}
 		default:
@@ -89,12 +131,58 @@ void OutM(matr *mas, ofstream &ofst)
 		case USUAL:
 		{
 			square = (dv_massiv*)mas;
+			switch(square->outm)
+			{
+				case LINE_BY_LINE:
+				{
+					ofst << "It is line by line method of output" << endl;
+					break;
+				}
+				case BY_COLUMN:
+				{
+					ofst << "It is method of output by columns" << endl;
+					break;
+				}
+				case ONE_MASSIV:
+				{
+					ofst << "It is method of output in shape of one-dimensional massiv" << endl;
+					break;
+				}
+				default:
+				{
+					ofst << "It is incorrect way of output matrix!" <<endl;
+					break;
+				}
+			}
 			Out_mas(square,ofst);
 			break;
 		}
 		case DIAGONAL:
 		{
 			diag = (diagonal_matr*)mas;
+			switch(diag->outm)
+			{
+				case LINE_BY_LINE:
+				{
+					ofst << "It is line by line method of output" << endl;
+					break;
+				}
+				case BY_COLUMN:
+				{
+					ofst << "It is method of output by columns" << endl;
+					break;
+				}
+				case ONE_MASSIV:
+				{
+					ofst << "It is method of output in shape of one-dimensional massiv" << endl;
+					break;
+				}
+				default:
+				{
+					ofst << "It is incorrect way of output matrix!" <<endl;
+					break;
+				}
+			}
 			Out_diagonal(diag,ofst);
 			break;
 		}
@@ -163,7 +251,7 @@ void Out(container* &c, ofstream &ofst, int len)
 			p = p ->prev;
 	while (p != NULL)
 	{
-		ofst << p->len+1 << ": ";
+		ofst << p->len+1 << ": "<<endl;
 		OutM(p->cont, ofst); // вывод значения элемента p
 		p = p->next; // переход к следующему узлу
 	} 
