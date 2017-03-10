@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 using namespace std;
 // значения ключей для каждой из матриц
-enum type {USUAL, DIAGONAL};
+enum type {USUAL, DIAGONAL, TRIANGLE};
 
 struct dv_massiv 
 {
@@ -12,6 +13,12 @@ struct dv_massiv
 	int **A; 
 };
 struct diagonal_matr
+{
+	type key;
+	int n;
+	int *A; 
+};
+struct triangle_matr
 {
 	type key;
 	int n;
@@ -30,11 +37,10 @@ struct container
 };
 void In_Mas(dv_massiv* &mas, ifstream &ifst);
 void In_Diagonal(diagonal_matr* &mas,ifstream &ifst);
+void In_Triangle(triangle_matr* &mas,ifstream &ifst);
 void Out_mas(dv_massiv* &mas, ofstream &ofst);
 void Out_diagonal(diagonal_matr* &mas, ofstream &ofst);
-int Sum_Diagonal(diagonal_matr* &mas);
-int Sum_mas(dv_massiv* &mas);
-int Sum(matr *mas);
+void Out_Triangle(triangle_matr* &mas,ifstream &ifst);
 matr* ReadM(ifstream& ifst);
 void OutM(matr *mas, ofstream &ofst);
 struct container * init();

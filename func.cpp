@@ -26,7 +26,15 @@ void In_Diagonal(diagonal_matr* &mas,ifstream &ifst)
 		ifst >> mas->A[i];
 	}
 }
-
+void In_Triangle(triangle_matr* &mas,ifstream &ifst) 
+{
+	ifst >> mas->n;
+	mas->A = new int [mas->n];
+	for( int i = 0; i < mas->n; i++)
+	{
+		ifst >> mas->A[i];
+	}
+}
 void Out_mas(dv_massiv* &mas, ofstream &ofst)
 {
 	ofst << "It is a usual square matrix! Number of rows (columns) = " << mas->n << endl << "Matrix:" << endl;
@@ -50,11 +58,30 @@ void Out_diagonal(diagonal_matr* &mas, ofstream &ofst)
 		ofst << endl;
 	}
 }
+void Out_triangle(triangle_matr* &mas, ofstream &ofst)
+{
+	int n = (-1+ sqrt(float(1+8*mas->n)))/2;
+	ofst << "It is low triangle matrix! Number of rows (columns) = " << n << endl << "Matrix:" << endl;
+	int k = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+			if (i >= j)
+			{
+				ofst << mas->A[k] << '\t';
+				k++;
+			}
+			else
+				ofst << "0\t";
+		ofst << endl;
+	}
+}
 matr* ReadM(ifstream& ifst)
 {
 	matr *matrix;
 	dv_massiv *square;
 	diagonal_matr *diag;
+	triangle_matr *tri;
 	int key;
 	ifst >> key;
 	switch (key)
@@ -75,6 +102,14 @@ matr* ReadM(ifstream& ifst)
 			In_Mas(square,ifst);
 			return (matr*)square;
 		}
+		case 3:
+		{
+			//matrix->key = DIAGONAL;
+			tri = new triangle_matr;
+			tri->key = TRIANGLE;
+			In_Triangle(tri,ifst);
+			return (matr*)tri;
+		}
 		default:
 			return 0;
 	}
@@ -84,6 +119,7 @@ void OutM(matr *mas, ofstream &ofst)
 	//matr *matrix;
 	dv_massiv *square;
 	diagonal_matr *diag;
+	triangle_matr *tri;
 	switch(mas->key)
 	{
 		case USUAL:
@@ -96,6 +132,12 @@ void OutM(matr *mas, ofstream &ofst)
 		{
 			diag = (diagonal_matr*)mas;
 			Out_diagonal(diag,ofst);
+			break;
+		}
+		case TRIANGLE:
+		{
+			tri = (triangle_matr*)mas;
+			Out_triangle(tri,ofst);
 			break;
 		}
 		default:
