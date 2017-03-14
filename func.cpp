@@ -350,14 +350,16 @@ struct container * init()
  //  ќчистка контейнера от элементов (освобождение пам€ти)
 void Clear(container* &c) 
 {
-	while (c!=NULL) //ѕока по адресу на начало списка что-то есть
+	while (c->cont!=NULL) //ѕока по адресу на начало списка что-то есть
     {
 		container *temp;
-		temp = c->next;
-		c->prev = NULL;
+		temp = c->prev;
+		temp->next = NULL;
 		delete c; // освобождаем пам€ть удал€емого элемента
 		c = temp;
+		c->len--;
     }
+	//c = NULL;
 }
 int In(container* &c, ifstream &ifst)
 {
@@ -386,9 +388,12 @@ int In(container* &c, ifstream &ifst)
 	c = cur;
 	return len;
 }
-void Out(container* &c, ofstream &ofst, int len)
+void Out(container* &c, ofstream &ofst)
 {
+	int len = c->len+1;
 	ofst << "Container contains " << len << " elements." << endl;
+	if (len == 0)
+		return;
 	container *p;
 	p = c;
 	for( int i = 0; i < len-1; i++)
@@ -438,4 +443,22 @@ void Sort(container* &c, int len)
 			p = p->next; // переход к следующему узлу
 		}
 	} while (flag);
+void OutFirst(container* &c, ofstream &ofst)
+{
+	int len = c->len+1;
+	if (len == 0)
+		return;
+	container *p;
+	p = c;
+	for( int i = 0; i < len-1; i++)
+			p = p ->prev;
+	while (p != NULL)
+	{
+		if(p->cont->key == USUAL)
+		{
+			ofst << p->len+1 << ": ";
+			OutM(p->cont, ofst); // вывод значени€ элемента p
+		}
+		p = p->next; // переход к следующему узлу
+	} 
 }
