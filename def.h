@@ -5,18 +5,20 @@
 using namespace std;
 // значения ключей для каждой из матриц
 enum type {USUAL, DIAGONAL, TRIANGLE};
-
+enum output {LINE_BY_LINE, BY_COLUMN, ONE_MASSIV};
 struct dv_massiv 
 {
 	type key;
 	int n;
-	int **A; 
+	int **A;
+	output outm;
 };
 struct diagonal_matr
 {
 	type key;
 	int n;
-	int *A; 
+	int *A;
+	output outm;
 };
 struct triangle_matr
 {
