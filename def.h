@@ -25,6 +25,7 @@ struct triangle_matr
 	type key;
 	int n;
 	int *A; 
+	output outm;
 };
 struct matr 
 {

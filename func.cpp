@@ -443,6 +443,7 @@ void Sort(container* &c, int len)
 			p = p->next; // переход к следующему узлу
 		}
 	} while (flag);
+}
 void OutFirst(container* &c, ofstream &ofst)
 {
 	int len = c->len+1;
