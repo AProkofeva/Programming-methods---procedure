@@ -1,0 +1,41 @@
+Container contains 5 elements.
+1: 
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+0	0	0	
+0	1	0	
+0	0	5	
+Sum of elements = 6
+2: 
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
+Matrix:
+12	0	0	
+22	32	0	
+42	25	26	
+Sum of elements = 159
+3: 
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+41	91	
+71	121	
+Sum of elements = 324
+4: 
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+Sum of elements = 465
+5: 
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+114	0	0	0	
+0	311	0	0	
+0	0	211	0	
+0	0	0	1	
+Sum of elements = 637

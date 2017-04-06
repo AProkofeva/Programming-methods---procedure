@@ -1,0 +1,8 @@
+Container contains 1 elements.
+1:  
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+Sum of elements = 32
