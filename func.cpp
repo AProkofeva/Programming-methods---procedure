@@ -444,6 +444,11 @@ int In(container* &c, ifstream &ifst)
 {
     int len = 0;
 	len = checkNumber(ifst,len);
+	if (len < 0)
+    {
+        cout << "Wrong count of elements ( must be > 0)!!!" << endl;
+        exit(1);
+    }
     container *cur;
     cur = c;
     for(int i = 0; i <len; i++)
