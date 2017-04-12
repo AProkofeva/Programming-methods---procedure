@@ -1,10 +1,83 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "def.h"
 
-// значени¤ ключей дл¤ каждой из матриц
+void checkIn(ifstream &ifst)
+{
+	if(!ifst)
+	{
+		cout << "No input file found!" << endl;
+		exit(1);
+	}
+}
+void checkOut(ofstream &ofst)
+{
+	if(!ofst)
+	{
+		cout << "No output file found!" << endl;
+		exit(1);
+	}
+}
+int checkNumber(ifstream &ifst, int number)
+{
+	ifst >> number;
+	if (ifst.fail())
+    {
+        cout << "Wrong input! Your file must contain only numbers!" << endl;
+        exit(1);
+    }
+	if (( number < -1000 ) || (number > 1000))
+	{
+		 cout << "Wrong input! Your file contain large numbers!" << endl;
+		 exit(1);
+	}
+	return number;
+}
+void checkType(int number)
+{
+	int begin = 1;
+	int end = 3;
+	if (( number < begin ) || (number > end))
+    {
+        cout << "Wrong type!!! 1 - diagonal, 2 - square (usual), 3 - triangle matrix" << endl;
+		cout << "OR  1 - line by line, 2 - by column, 3 - like one-dimensional way output of matrix" << endl;
+        exit(1);
+    }
+}
+void checkSize(int size)
+{
+	if ((size < 2) || (size > 100))
+    {
+        cout << "Wrong size of matrix!!!" << endl;
+        exit(1);
+    }
+}
+void checkTriangleSize(int size)
+{
+	float sq = sqrt(float(1+8*size));
+	if ((sq - int(sq)) == 0)
+	{
+		float n = (-1+ sq)/2;
+		if ((n - int(n)) == 0)
+		{
+			return ;
+		}
+		else
+		{
+			cout << "Wrong size of triangle matrix!!!" << endl;
+			exit(1);
+		}
+	}
+	else
+	{
+		cout << "Wrong size of triangle matrix!!!" << endl;
+		exit(1);
+	}
+}
+// значения ключей для каждой из матриц
 void In_Mas(dv_massiv* &mas, ifstream &ifst)
 {
-    ifst >> mas->n;
+	mas->n = checkNumber(ifst,mas->n);
+	checkSize(mas->n);
     mas->A = new int*[mas->n];
     for (int i = 0; i <mas->n; ++i)
     {
@@ -14,26 +87,29 @@ void In_Mas(dv_massiv* &mas, ifstream &ifst)
     {
         for (int j = 0; j < mas->n; j++)
         {
-            ifst >> mas->A[i][j];
+            mas->A[i][j] = checkNumber(ifst, mas->A[i][j]);
         }
     }
 }
 void In_Diagonal(diagonal_matr* &mas,ifstream &ifst)
 {
-    ifst >> mas->n;
+    mas->n = checkNumber(ifst,mas->n);
+	checkSize(mas->n);
     mas->A = new int [mas->n];
     for( int i = 0; i < mas->n; i++)
     {
-        ifst >> mas->A[i];
+        mas->A[i] = checkNumber(ifst, mas->A[i]);
     }
 }
 void In_Triangle(triangle_matr* &mas,ifstream &ifst)
 {
-    ifst >> mas->n;
+    mas->n = checkNumber(ifst,mas->n);
+	checkSize(mas->n);
+	checkTriangleSize(mas->n);
     mas->A = new int [mas->n];
     for( int i = 0; i < mas->n; i++)
     {
-        ifst >> mas->A[i];
+        mas->A[i] = checkNumber(ifst, mas->A[i]);
     }
 }
 void Out_mas(dv_massiv* &mas, ofstream &ofst)
@@ -83,10 +159,12 @@ matr* ReadM(ifstream& ifst)
     dv_massiv *square;
     diagonal_matr *diag;
     triangle_matr *tri;
-    int key;
-    ifst >> key;
-    int outmas;
-    ifst >> outmas;
+    int key = 0;
+	key = checkNumber(ifst,key);
+	checkType(key);
+    int outmas = 0;
+    outmas = checkNumber(ifst,outmas);
+	checkType(outmas);
     switch (key)
     {
         case 1:
@@ -365,7 +443,7 @@ void Clear(container* &c)
 int In(container* &c, ifstream &ifst)
 {
     int len = 0;
-    ifst >> len;
+	len = checkNumber(ifst,len);
     container *cur;
     cur = c;
     for(int i = 0; i <len; i++)

@@ -6,28 +6,28 @@ using namespace std;
 // значения ключей для каждой из матриц
 enum type {USUAL, DIAGONAL, TRIANGLE};
 enum output {LINE_BY_LINE, BY_COLUMN, ONE_MASSIV};
-struct dv_massiv 
+struct dv_massiv
 {
-	type key;
-	int n;
-	int **A;
-	output outm;
+    type key;
+    int n;
+    int **A;
+    output outm;
 };
 struct diagonal_matr
 {
-	type key;
-	int n;
-	int *A;
-	output outm;
+    type key;
+    int n;
+    int *A;
+    output outm;
 };
 struct triangle_matr
 {
-	type key;
-	int n;
-	int *A; 
-	output outm;
+    type key;
+    int n;
+    int *A;
+    output outm;
 };
-struct matr 
+struct matr
 {
     type key; // ключ
 };
@@ -38,6 +38,12 @@ struct container
    struct container *next; // указатель на следующий элемент
    struct container *prev; // указатель на предыдущий элемент
 };
+void checkIn(ifstream &ifst);
+void checkOut(ofstream &ofst);
+int checkNumber(ifstream &ifst, int number);
+void checkType(int number);
+void checkSize(int size);
+void checkTriangleSize(int size);
 void In_Mas(dv_massiv* &mas, ifstream &ifst);
 void In_Diagonal(diagonal_matr* &mas,ifstream &ifst);
 void In_Triangle(triangle_matr* &mas,ifstream &ifst);
@@ -55,4 +61,5 @@ void Clear(container* &c);
 int In(container* &c, ifstream &ifst);
 void Sort(container* &c, int len);
 void Out(container* &c, ofstream &ofst);
+bool Compare(matr *mas1, matr *mas2);
 void OutFirst(container* &c, ofstream &ofst);

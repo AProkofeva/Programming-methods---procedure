@@ -1,5 +1,4 @@
-// MP1.cpp: определяет точку входа для консольного приложения.
-//
+// MP3.cpp: определяет точку входа для консольного приложения.
 #include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,6 +20,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//ifstream ifst(fp);
 	//FILE *fn = fopen("out.txt","w");
 	//ofstream ofst(fn);
+	checkIn(ifst);
+	checkOut(ofst);
 	cout << "Start"<< endl;
 	container *c;
 	c = init();
@@ -38,4 +39,3 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Stop"<< endl;
 	return 0;
 }
-
