@@ -1,41 +1,40 @@
-// MP3.cpp: определяет точку входа для консольного приложения.
-#include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
 #include "def.h"
 using namespace std;
-int _tmain(int argc, _TCHAR* argv[])
+
+int main(int argc, char *argv[])
 {
-	if(argc !=3)	
+	if(argc !=3)
 	{
 		cout << "Error! Incorrect command line! "
 		"Waited: command infile outfile" << endl;
 		exit(1);
 	}
-	ifstream ifst(argv[1]);
-	ofstream ofst(argv[2]);
+	ifstream inFile(argv[1]);
+	ofstream outFile(argv[2]);
 	//FILE *fp = fopen("in.txt","r");
-	//ifstream ifst(fp);
+	//ifstream inFile(fp);
 	//FILE *fn = fopen("out.txt","w");
-	//ofstream ofst(fn);
-	checkIn(ifst);
-	checkOut(ofst);
+	//ofstream outFile(fn);
+	CheckIn(inFile);
+	CheckOut(outFile);
 	cout << "Start"<< endl;
-	container *c;
-	c = init();
-	int len = In(c, ifst);
-    ofst << "Filled container. " << endl;
-	Out(c, ofst);
-	ofst << "Sorted container. " << endl;
-	Sort(c, len);
-	Out(c, ofst);
-	ofst << "Only usual matrix. " << endl;
-	OutFirst(c,ofst);
-	Clear(c);
-    ofst << "Empty container. " << endl;
-	Out(c, ofst);
+	_container *cont;
+	cont = Init();
+	int len = In(cont, inFile);
+	outFile << "Filled container. " << endl;
+	Out(cont, outFile);
+	outFile << "Sorted container. " << endl;
+	Sort(cont, len);
+	Out(cont, outFile);
+	outFile << "Only usual matrix. " << endl;
+	OutFirst(cont,outFile);
+	Clear(cont);
+	outFile << "Empty container. " << endl;
+	Out(cont, outFile);
 	cout << "Stop"<< endl;
 	return 0;
 }

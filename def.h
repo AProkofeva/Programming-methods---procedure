@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 #include <fstream>
 #include <cmath>
@@ -6,60 +6,60 @@ using namespace std;
 // значения ключей для каждой из матриц
 enum type {USUAL, DIAGONAL, TRIANGLE};
 enum output {LINE_BY_LINE, BY_COLUMN, ONE_MASSIV};
-struct dv_massiv
+struct _squareMatr
 {
-    type key;
-    int n;
-    int **A;
-    output outm;
+	type key;
+	int n;
+	int **A;
+	output outway;
 };
-struct diagonal_matr
+struct _diagonalMatr
 {
-    type key;
-    int n;
-    int *A;
-    output outm;
+	type key;
+	int n;
+	int *A;
+	output outway;
 };
-struct triangle_matr
+struct _triangleMatr
 {
-    type key;
-    int n;
-    int *A;
-    output outm;
+	type key;
+	int n;
+	int *A;
+	output outway;
 };
-struct matr
+struct _matr
 {
-    type key; // ключ
+	type key; // ключ
 };
-struct container
+struct _container
 {
-   matr *cont;
-   int len;
-   struct container *next; // указатель на следующий элемент
-   struct container *prev; // указатель на предыдущий элемент
+	_matr *cont;
+	int len;
+	struct _container *next; // указатель на следующий элемент
+	struct _container *prev; // указатель на предыдущий элемент
 };
-void checkIn(ifstream &ifst);
-void checkOut(ofstream &ofst);
-int checkNumber(ifstream &ifst, int number);
-void checkType(int number);
-void checkSize(int size);
-void checkTriangleSize(int size);
-void In_Mas(dv_massiv* &mas, ifstream &ifst);
-void In_Diagonal(diagonal_matr* &mas,ifstream &ifst);
-void In_Triangle(triangle_matr* &mas,ifstream &ifst);
-void Out_mas(dv_massiv* &mas, ofstream &ofst);
-void Out_diagonal(diagonal_matr* &mas, ofstream &ofst);
-void Out_Triangle(triangle_matr* &mas,ifstream &ifst);
-int Sum(matr *mas);
-int Sum_mas(dv_massiv* &mas);
-int Sum_Triangle(triangle_matr* &mas);
-int Sum_Diagonal(diagonal_matr* &mas);
-matr* ReadM(ifstream& ifst);
-void OutM(matr *mas, ofstream &ofst);
-struct container * init();
-void Clear(container* &c);
-int In(container* &c, ifstream &ifst);
-void Sort(container* &c, int len);
-void Out(container* &c, ofstream &ofst);
-bool Compare(matr *mas1, matr *mas2);
-void OutFirst(container* &c, ofstream &ofst);
+void CheckIn(ifstream &inFile);
+void CheckOut(ofstream &outFile);
+int CheckNumber(ifstream &inFile, int number);
+void CheckType(int number);
+void CheckSize(int size);
+void CheckTriangleSize(int size);
+void InSquare(_squareMatr* &mas, ifstream &inFile);
+void InDiagonal(_diagonalMatr* &mas,ifstream &inFile);
+void InTriangle(_triangleMatr* &mas,ifstream &inFile);
+void OutSquare(_squareMatr* &mas, ofstream &outFile);
+void OutDiagonal(_diagonalMatr* &mas, ofstream &outFile);
+void OutTriangle(_triangleMatr* &mas,ifstream &inFile);
+int Sum(_matr *mas);
+int SumSquare(_squareMatr* &mas);
+int SumTriangle(_triangleMatr* &mas);
+int SumDiagonal(_diagonalMatr* &mas);
+_matr* ReadMas(ifstream& inFile);
+void OutMas(_matr *mas, ofstream &outFile);
+struct _container *Init();
+void Clear(_container* &cont);
+int In(_container* &cont, ifstream &inFile);
+void Sort(_container* &cont, int len);
+void Out(_container* &cont, ofstream &outFile);
+bool Compare(_matr *mas1, _matr *mas2);
+void OutFirst(_container* &cont, ofstream &outFile);

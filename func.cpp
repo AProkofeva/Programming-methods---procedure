@@ -1,26 +1,26 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "def.h"
 
-void checkIn(ifstream &ifst)
+void CheckIn(ifstream &inFile)
 {
-	if(!ifst)
+	if(!inFile)
 	{
 		cout << "No input file found!" << endl;
 		exit(1);
 	}
 }
-void checkOut(ofstream &ofst)
+void CheckOut(ofstream &outFile)
 {
-	if(!ofst)
+	if(!outFile)
 	{
 		cout << "No output file found!" << endl;
 		exit(1);
 	}
 }
-int checkNumber(ifstream &ifst, int number)
+int CheckNumber(ifstream &inFile, int number)
 {
-	ifst >> number;
-	if (ifst.fail())
+	inFile >> number;
+	if (inFile.fail())
     {
         cout << "Wrong input! Your file must contain only numbers!" << endl;
         exit(1);
@@ -32,7 +32,7 @@ int checkNumber(ifstream &ifst, int number)
 	}
 	return number;
 }
-void checkType(int number)
+void CheckType(int number)
 {
 	int begin = 1;
 	int end = 3;
@@ -43,7 +43,7 @@ void checkType(int number)
         exit(1);
     }
 }
-void checkSize(int size)
+void CheckSize(int size)
 {
 	if ((size < 2) || (size > 100))
     {
@@ -51,12 +51,12 @@ void checkSize(int size)
         exit(1);
     }
 }
-void checkTriangleSize(int size)
+void CheckTriangleSize(int size)
 {
-	float sq = sqrt(float(1+8*size));
+	float sq = sqrt(float(1 + 8*size));
 	if ((sq - int(sq)) == 0)
 	{
-		float n = (-1+ sq)/2;
+		float n = (-1 + sq)/2;
 		if ((n - int(n)) == 0)
 		{
 			return ;
@@ -74,287 +74,309 @@ void checkTriangleSize(int size)
 	}
 }
 // значения ключей для каждой из матриц
-void In_Mas(dv_massiv* &mas, ifstream &ifst)
+void InSquare(_squareMatr* &mas, ifstream &inFile)
 {
-	mas->n = checkNumber(ifst,mas->n);
-	checkSize(mas->n);
+	mas->n = CheckNumber(inFile,mas->n);
+	CheckSize(mas->n);
     mas->A = new int*[mas->n];
-    for (int i = 0; i <mas->n; ++i)
-    {
-        mas->A[i]=new int[mas->n];
-    }
-    for( int i = 0; i < mas->n; i++)
-    {
-        for (int j = 0; j < mas->n; j++)
-        {
-            mas->A[i][j] = checkNumber(ifst, mas->A[i][j]);
-        }
+	for (int i = 0; i < mas->n; ++i)
+	{
+		mas->A[i]=new int[mas->n];
+	}
+	for( int i = 0; i < mas->n; i++)
+	{
+		for (int j = 0; j < mas->n; j++)
+		{
+			mas->A[i][j] = CheckNumber(inFile, mas->A[i][j]);
+		}
+	}
+}
+void InDiagonal(_diagonalMatr* &mas,ifstream &inFile)
+{
+	mas->n = CheckNumber(inFile,mas->n);
+	CheckSize(mas->n);
+	mas->A = new int [mas->n];
+	for( int i = 0; i < mas->n; i++)
+	{
+		mas->A[i] = CheckNumber(inFile, mas->A[i]);
     }
 }
-void In_Diagonal(diagonal_matr* &mas,ifstream &ifst)
+void InTriangle(_triangleMatr* &mas,ifstream &inFile)
 {
-    mas->n = checkNumber(ifst,mas->n);
-	checkSize(mas->n);
+	mas->n = CheckNumber(inFile,mas->n);
+	CheckSize(mas->n);
+	CheckTriangleSize(mas->n);
     mas->A = new int [mas->n];
     for( int i = 0; i < mas->n; i++)
     {
-        mas->A[i] = checkNumber(ifst, mas->A[i]);
+		mas->A[i] = CheckNumber(inFile, mas->A[i]);
     }
 }
-void In_Triangle(triangle_matr* &mas,ifstream &ifst)
+void OutSquare(_squareMatr* &mas, ofstream &outFile)
 {
-    mas->n = checkNumber(ifst,mas->n);
-	checkSize(mas->n);
-	checkTriangleSize(mas->n);
-    mas->A = new int [mas->n];
-    for( int i = 0; i < mas->n; i++)
-    {
-        mas->A[i] = checkNumber(ifst, mas->A[i]);
-    }
-}
-void Out_mas(dv_massiv* &mas, ofstream &ofst)
-{
-    ofst << "It is a usual square matrix! Number of rows (columns) = " << mas->n << endl << "Matrix:" << endl;
+	outFile << "It is a usual square matrix! Number of rows (columns) = " << mas->n << endl << "Matrix:" << endl;
     for (int i = 0; i < mas->n; i++)
     {
         for (int j = 0; j < mas->n; j++)
-            ofst << mas->A[i][j] << '\t';
-        ofst << endl;
+		{
+			outFile << mas->A[i][j] << '\t';
+		}
+		outFile << endl;
     }
 }
-void Out_diagonal(diagonal_matr* &mas, ofstream &ofst)
+void OutDiagonal(_diagonalMatr* &mas, ofstream &outFile)
 {
-    ofst << "It is diagonal matrix! Number of rows (columns) = " << mas->n << endl << "Matrix:" << endl;
+	outFile << "It is diagonal matrix! Number of rows (columns) = " << mas->n << endl << "Matrix:" << endl;
     for (int i = 0; i < mas->n; i++)
     {
         for (int j = 0; j < mas->n; j++)
+		{
             if (i == j)
-                ofst << mas->A[i] << '\t';
+			{
+				outFile << mas->A[i] << '\t';
+			}
             else
-                ofst << "0\t";
-        ofst << endl;
+			{
+				outFile << "0\t";
+			}
+		}
+		outFile << endl;
     }
 }
-void Out_triangle(triangle_matr* &mas, ofstream &ofst)
+void Out_triangle(_triangleMatr* &mas, ofstream &outFile)
 {
-    int n = (-1+ sqrt(float(1+8*mas->n)))/2;
-    ofst << "It is low triangle matrix! Number of rows (columns) = " << n << endl << "Matrix:" << endl;
+	int n = ( -1 + sqrt(float(1 + 8 * mas->n)))/2;
+	outFile << "It is low triangle matrix! Number of rows (columns) = " << n << endl << "Matrix:" << endl;
     int k = 0;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
+		{
             if (i >= j)
             {
-                ofst << mas->A[k] << '\t';
+				outFile << mas->A[k] << '\t';
                 k++;
             }
             else
-                ofst << "0\t";
-        ofst << endl;
+			{
+				outFile << "0\t";
+			}
+		}
+		outFile << endl;
     }
 }
-matr* ReadM(ifstream& ifst)
+_matr* ReadMas(ifstream& inFile)
 {
-    matr *matrix = new matr;
-    dv_massiv *square;
-    diagonal_matr *diag;
-    triangle_matr *tri;
+	_matr *matrix = new _matr;
+	_squareMatr *square;
+	_diagonalMatr *diag;
+	_triangleMatr *tri;
     int key = 0;
-	key = checkNumber(ifst,key);
-	checkType(key);
+	key = CheckNumber(inFile,key);
+	CheckType(key);
     int outmas = 0;
-    outmas = checkNumber(ifst,outmas);
-	checkType(outmas);
+	outmas = CheckNumber(inFile,outmas);
+	CheckType(outmas);
     switch (key)
     {
-        case 1:
-        {
+		case 1:
+		{
             //matrix->key = DIAGONAL;
-            diag = new diagonal_matr;
+			diag = new _diagonalMatr;
             diag->key = DIAGONAL;
-            In_Diagonal(diag,ifst);
+			InDiagonal(diag,inFile);
             switch (outmas)
             {
                 case 1:
                 {
-                    diag->outm = LINE_BY_LINE;
+					diag->outway = LINE_BY_LINE;
                     break;
                 }
                 case 2:
                 {
-                    diag->outm = BY_COLUMN;
+					diag->outway = BY_COLUMN;
                     break;
                 }
                 case 3:
                 {
-                    diag->outm = ONE_MASSIV;
+					diag->outway = ONE_MASSIV;
                     break;
                 }
                 default:
+				{
                     return 0;
+				}
             }
-            return (matr*)diag;
+			return (_matr*)diag;
         }
 
         case 2:
         {
-            square = new dv_massiv;
+			square = new _squareMatr;
             square->key = USUAL;
-            In_Mas(square,ifst);
+			InSquare(square,inFile);
             switch (outmas)
             {
                 case 1:
                 {
-                    square->outm = LINE_BY_LINE;
+					square->outway = LINE_BY_LINE;
                     break;
                 }
                 case 2:
                 {
-                    square->outm = BY_COLUMN;
+					square->outway = BY_COLUMN;
                     break;
                 }
                 case 3:
                 {
-                    square->outm = ONE_MASSIV;
+					square->outway = ONE_MASSIV;
                     break;
                 }
                 default:
+				{
                     return 0;
+				}
             }
-            return (matr*)square;
+			return (_matr*)square;
         }
         case 3:
         {
             //matrix->key = DIAGONAL;
-            tri = new triangle_matr;
+			tri = new _triangleMatr;
             tri->key = TRIANGLE;
-            In_Triangle(tri,ifst);
+			InTriangle(tri,inFile);
             switch (outmas)
             {
                 case 1:
                 {
-                    tri->outm = LINE_BY_LINE;
+					tri->outway = LINE_BY_LINE;
                     break;
                 }
                 case 2:
                 {
-                    tri->outm = BY_COLUMN;
+					tri->outway = BY_COLUMN;
                     break;
                 }
                 case 3:
                 {
-                    tri->outm = ONE_MASSIV;
+					tri->outway = ONE_MASSIV;
                     break;
                 }
                 default:
+				{
                     return 0;
+				}
             }
-            return (matr*)tri;
+			return (_matr*)tri;
         }
         default:
+		{
             return 0;
+		}
     }
 }
-void OutM(matr *mas, ofstream &ofst)
+void OutMas(_matr *mas, ofstream &outFile)
 {
-    //matr *matrix;
-    dv_massiv *square;
-    diagonal_matr *diag;
-    triangle_matr *tri;
+	//_matr *matrix;
+	_squareMatr *square;
+	_diagonalMatr *diag;
+	_triangleMatr *tri;
     switch(mas->key)
     {
         case USUAL:
         {
-            square = (dv_massiv*)mas;
-            switch(square->outm)
+			square = (_squareMatr*)mas;
+			switch(square->outway)
             {
                 case LINE_BY_LINE:
                 {
-                    ofst << "It is line by line method of output" << endl;
+					outFile << "It is line by line method of output" << endl;
                     break;
                 }
                 case BY_COLUMN:
                 {
-                    ofst << "It is method of output by columns" << endl;
+					outFile << "It is method of output by columns" << endl;
                     break;
                 }
                 case ONE_MASSIV:
                 {
-                    ofst << "It is method of output in shape of one-dimensional massiv" << endl;
+					outFile << "It is method of output in shape of one-dimensional massiv" << endl;
                     break;
                 }
                 default:
                 {
-                    ofst << "It is incorrect way of output matrix!" <<endl;
+					outFile << "It is incorrect way of output matrix!" <<endl;
                     break;
                 }
             }
-            Out_mas(square,ofst);
+			OutSquare(square,outFile);
             break;
         }
         case DIAGONAL:
         {
-            diag = (diagonal_matr*)mas;
-            switch(diag->outm)
+			diag = (_diagonalMatr*)mas;
+			switch(diag->outway)
             {
                 case LINE_BY_LINE:
                 {
-                    ofst << "It is line by line method of output" << endl;
+					outFile << "It is line by line method of output" << endl;
                     break;
                 }
                 case BY_COLUMN:
                 {
-                    ofst << "It is method of output by columns" << endl;
+					outFile << "It is method of output by columns" << endl;
                     break;
                 }
                 case ONE_MASSIV:
                 {
-                    ofst << "It is method of output in shape of one-dimensional massiv" << endl;
+					outFile << "It is method of output in shape of one-dimensional massiv" << endl;
                     break;
                 }
                 default:
                 {
-                    ofst << "It is incorrect way of output matrix!" <<endl;
+					outFile << "It is incorrect way of output matrix!" <<endl;
                     break;
                 }
             }
-            Out_diagonal(diag,ofst);
+			OutDiagonal(diag,outFile);
             break;
         }
         case TRIANGLE:
         {
-            tri = (triangle_matr*)mas;
-            switch(tri->outm)
+			tri = (_triangleMatr*)mas;
+			switch(tri->outway)
             {
                 case LINE_BY_LINE:
                 {
-                    ofst << "It is line by line method of output" << endl;
+					outFile << "It is line by line method of output" << endl;
                     break;
                 }
                 case BY_COLUMN:
                 {
-                    ofst << "It is method of output by columns" << endl;
+					outFile << "It is method of output by columns" << endl;
                     break;
                 }
                 case ONE_MASSIV:
                 {
-                    ofst << "It is method of output in shape of one-dimensional massiv" << endl;
+					outFile << "It is method of output in shape of one-dimensional massiv" << endl;
                     break;
                 }
                 default:
                 {
-                    ofst << "It is incorrect way of output matrix!" <<endl;
+					outFile << "It is incorrect way of output matrix!" <<endl;
                     break;
                 }
             }
-            Out_triangle(tri,ofst);
+			Out_triangle(tri,outFile);
             break;
         }
-        default:
-            ofst << "It is incorrect matrix!" <<endl;
+		default:
+		{
+			outFile << "It is incorrect matrix!" <<endl;
+		}
     }
 }
-int Sum_Diagonal(diagonal_matr* &mas)
+int SumDiagonal(_diagonalMatr* &mas)
 {
     int sum = 0;
     for (int i = 0; i < mas->n; i++)
@@ -363,7 +385,7 @@ int Sum_Diagonal(diagonal_matr* &mas)
     }
     return sum;
 }
-int Sum_Triangle(triangle_matr* &mas)
+int SumTriangle(_triangleMatr* &mas)
 {
     int sum = 0;
     for (int i = 0; i < mas->n; i++)
@@ -372,7 +394,7 @@ int Sum_Triangle(triangle_matr* &mas)
     }
     return sum;
 }
-int Sum_mas(dv_massiv* &mas)
+int SumSquare(_squareMatr* &mas)
 {
     int sum = 0;
     for( int i = 0; i < mas->n; i++)
@@ -384,137 +406,145 @@ int Sum_mas(dv_massiv* &mas)
     }
     return sum;
 }
-int Sum(matr *mas)
+int Sum(_matr *mas)
 {
-    dv_massiv *square;
-    diagonal_matr *diag;
-    triangle_matr* tri;
+	_squareMatr *square;
+	_diagonalMatr *diag;
+	_triangleMatr *tri;
     switch(mas->key)
     {
         case USUAL:
         {
-            square = (dv_massiv*)mas;
-            int sum = Sum_mas(square);
+			square = (_squareMatr*)mas;
+			int sum = SumSquare(square);
             return sum;
         }
         case DIAGONAL:
         {
-            diag = (diagonal_matr*)mas;
-            int sum = Sum_Diagonal(diag);
+			diag = (_diagonalMatr*)mas;
+			int sum = SumDiagonal(diag);
             return sum;
         }
         case TRIANGLE:
         {
-            tri = (triangle_matr*)mas;
-            int sum = Sum_Triangle(tri);
+			tri = (_triangleMatr*)mas;
+			int sum = SumTriangle(tri);
             return sum;
         }
         default:
+		{
             return -1;
+		}
     }
 }
-struct container * init()
+struct _container * Init()
 {
-  // а- значение первого узла
-  struct container *lst;
-  // выделение пам¤ти под корень списка
-  lst = new container;
-  lst->cont = NULL;
-  lst->next = NULL; // указатель на следующий узел
-  lst->len = 0;
-  lst->prev = NULL; // указатель на предыдущий узел
-  return(lst);
+	// а- значение первого узла
+	struct _container *lst;
+	// выделение пам¤ти под корень списка
+	lst = new _container;
+	lst->cont = NULL;
+	lst->next = NULL; // указатель на следующий узел
+	lst->len = 0;
+	lst->prev = NULL; // указатель на предыдущий узел
+	return(lst);
 }
 
  //  ќчистка контейнера от элементов (освобождение пам¤ти)
-void Clear(container* &c)
+void Clear(_container* &cont)
 {
-    while (c->cont!=NULL) //ѕока по адресу на начало списка что-то есть
+	while (cont->cont != NULL) //ѕока по адресу на начало списка что-то есть
     {
-        container *temp;
-        temp = c->prev;
+		_container *temp;
+		temp = cont->prev;
         temp->next = NULL;
-        delete c; // освобождаем пам¤ть удал¤емого элемента
-        c = temp;
-        //c->len--;
+		delete cont; // освобождаем пам¤ть удал¤емого элемента
+		cont = temp;
+		//cont->len--;
     }
-    //c = NULL;
+	//cont = NULL;
 }
-int In(container* &c, ifstream &ifst)
+int In(_container* &cont, ifstream &inFile)
 {
     int len = 0;
-	len = checkNumber(ifst,len);
+	len = CheckNumber(inFile,len);
 	if (len < 0)
     {
         cout << "Wrong count of elements ( must be > 0)!!!" << endl;
         exit(1);
     }
-    container *cur;
-    cur = c;
-    for(int i = 0; i <len; i++)
+	_container *cur;
+	cur = cont;
+	for(int i = 0; i < len; i++)
     {
-        matr *matrix;
-        if((matrix = ReadM(ifst))!=0)
+		_matr *matrix;
+		if((matrix = ReadMas(inFile))!=0)
         {
-            container *temp, *p;
-            temp = new container;
+			_container *temp, *p;
+			temp = new _container;
             p = cur->next; // сохранение указател¤ на следующий узел
             cur->next = temp; // предыдущий узел указывает на создаваемый
             temp->cont = matrix;
-            temp->len = i+1;// сохранение пол¤ данных добавл¤емого узла
+			temp->len = i + 1;// сохранение пол¤ данных добавл¤емого узла
             temp->next = p; // созданный узел указывает на следующий узел
             temp->prev = cur; // созданный узел указывает на предыдущий узел
-            if (p != NULL)
+			if (p != NULL)
+			{
                 p->prev = temp;
+			}
             cur = temp;
         }
     }
-    c = cur;
+	cont = cur;
     return len;
 }
-void Out(container* &c, ofstream &ofst)
+void Out(_container* &cont, ofstream &outFile)
 {
-    int len = c->len;
-    ofst << "Container contains " << len << " elements." << endl;
-    if (c->len == 0)
+	int len = cont->len;
+	outFile << "Container contains " << len << " elements." << endl;
+	if (cont->len == 0)
     {
         return;
     }
-    container *p;
-    p = c;
+	_container *p;
+	p = cont;
     for( int i = 0; i < len-1; i++)
-            p = p ->prev;
+	{
+		p = p ->prev;
+	}
     while (p != NULL)
     {
-        ofst << p->len << ": "<<endl;
-        OutM(p->cont, ofst); // вывод значени¤ элемента p
+		outFile << p->len << ": "<<endl;
+		OutMas(p->cont, outFile); // вывод значени¤ элемента p
         int sum = Sum (p->cont);
-        ofst << "Sum of elements = " << sum << endl;
+		outFile << "Sum of elements = " << sum << endl;
         p = p->next; // переход к следующему узлу
     }
 }
-bool Compare(matr *mas1, matr *mas2)
+bool Compare(_matr *mas1, _matr *mas2)
 {
     int s = Sum(mas1);
     int sk = Sum(mas2);
     return (s>sk);
 }
-void Sort(container* &c, int len)
+void Sort(_container* &cont, int len)
 {
-    container *p;
-    p = c;
+	_container *p;
+	p = cont;
     bool flag;
     do
     {
         flag = false;
         for( int i = 0; i < len-1; i++)
-                p = p ->prev;
+		{
+			p = p ->prev;
+		}
         while (p->next != NULL)
         {
-            matr *one;
+			_matr *one;
             one = p->cont;
             p = p->next;
-            matr *two;
+			_matr *two;
             two = p->cont;
             bool k = Compare(one, two);
             if (k == true)
@@ -525,26 +555,32 @@ void Sort(container* &c, int len)
                 flag = true;
             }
             else
+			{
                 p = p->prev;
+			}
             p = p->next; // переход к следующему узлу
         }
-    } while (flag);
+	} while (flag);
 }
-void OutFirst(container* &c, ofstream &ofst)
+void OutFirst(_container* &cont, ofstream &outFile)
 {
-    int len = c->len;
+	int len = cont->len;
     if (len == 0)
+	{
         return;
-    container *p;
-    p = c;
+	}
+	_container *p;
+	p = cont;
     for( int i = 0; i < len-1; i++)
-            p = p ->prev;
+	{
+		p = p ->prev;
+	}
     while (p != NULL)
     {
         if(p->cont->key == USUAL)
         {
-            ofst << p->len << ": ";
-            OutM(p->cont, ofst); // вывод значени¤ элемента p
+			outFile << p->len << ": ";
+			OutMas(p->cont, outFile); // вывод значени¤ элемента p
         }
         p = p->next; // переход к следующему узлу
     }
