@@ -585,3 +585,106 @@ void OutFirst(_container* &cont, ofstream &outFile)
         p = p->next; // переход к следующему узлу
     }
 }
+void Multimethod(_container* &cont, ofstream &outFile)
+{
+	int len = cont->len;
+	if (cont->len == 0)
+	{
+		return;
+	}
+	_container *temp1;
+	_container *temp2;
+	temp1 = cont;
+	for( int i = 0; i < len-1; i++)
+			temp1 = temp1 ->prev;
+	outFile << "--------------------------------------" <<endl;
+	while (temp1 != NULL)
+	{
+		temp2 = temp1->next;
+		while (temp2 != NULL)
+		{
+			switch(temp1->cont->key)
+			{
+				case USUAL:
+				{
+					switch(temp2->cont->key)
+					{
+						case USUAL:
+						{
+							outFile << "Usual matrix and usual matrix:" <<endl;
+							break;
+						}
+						case DIAGONAL:
+						{
+							outFile << "Usual matrix and diagonal matrix:" <<endl;
+							break;
+						}
+						case TRIANGLE:
+						{
+							outFile << "Usual matrix and triangle matrix:" <<endl;
+							break;
+						}
+						default:
+							outFile << "It is incorrect type matrix!" <<endl;
+					}
+					break;
+				}
+				case DIAGONAL:
+				{
+					switch(temp2->cont->key)
+					{
+						case USUAL:
+						{
+							outFile << "Diagonal matrix and usual matrix:" <<endl;
+							break;
+						}
+						case DIAGONAL:
+						{
+							outFile << "Diagonal matrix and diagonal matrix:" <<endl;
+							break;
+						}
+						case TRIANGLE:
+						{
+							outFile << "Diagonal matrix and triangle matrix:" <<endl;
+							break;
+						}
+						default:
+							outFile << "It is incorrect type matrix!" <<endl;
+					}
+					break;
+				}
+				case TRIANGLE:
+				{
+					switch(temp2->cont->key)
+					{
+						case USUAL:
+						{
+							outFile << "Triangle matrix and usual matrix:" <<endl;
+							break;
+						}
+						case DIAGONAL:
+						{
+							outFile << "Triangle matrix and diagonal matrix:" <<endl;
+							break;
+						}
+						case TRIANGLE:
+						{
+							outFile << "Triangle matrix and triangle matrix:" <<endl;
+							break;
+						}
+						default:
+							outFile << "It is incorrect type matrix!" <<endl;
+					}
+					break;
+				}
+				default:
+					outFile << "It is incorrect type matrix!" <<endl;
+			}
+			OutMas(temp1->cont, outFile);
+			OutMas(temp2->cont, outFile);
+			outFile << "--------------------------------------" <<endl;
+			temp2 = temp2->next;
+		}
+		temp1 = temp1->next; // переход к следующему узлу
+	}
+}

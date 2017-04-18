@@ -1,40 +1,47 @@
 Filled container. 
 Container contains 6 elements.
-1: It is diagonal matrix! Number of rows (columns) = 3
+1: 
+It is line by line method of output
+It is low triangle matrix! Number of rows (columns) = 2
 Matrix:
-7	0	0	
-0	5	0	
-0	0	3	
-Sum of elements = 15
-2: It is a usual square matrix! Number of rows (columns) = 2
+7	0	
+5	1	
+Sum of elements = 13
+2: 
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
 Matrix:
 4	9	
 7	12	
 Sum of elements = 32
-3: It is diagonal matrix! Number of rows (columns) = 7
+3: 
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
 Matrix:
-1	0	0	0	0	0	0	
-0	2	0	0	0	0	0	
-0	0	3	0	0	0	0	
-0	0	0	4	0	0	0	
-0	0	0	0	5	0	0	
-0	0	0	0	0	6	0	
-0	0	0	0	0	0	7	
-Sum of elements = 28
-4: It is a usual square matrix! Number of rows (columns) = 3
+1	0	0	
+2	3	0	
+4	5	6	
+Sum of elements = 21
+4: 
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
 Matrix:
 12	45	78	
 23	56	89	
 87	54	21	
 Sum of elements = 465
-5: It is diagonal matrix! Number of rows (columns) = 4
+5: 
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
 Matrix:
 4	0	0	0	
 0	3	0	0	
 0	0	2	0	
 0	0	0	1	
 Sum of elements = 10
-6: It is diagonal matrix! Number of rows (columns) = 3
+6: 
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
 Matrix:
 4	0	0	
 0	3	0	
@@ -42,45 +49,271 @@ Matrix:
 Sum of elements = 12
 Sorted container. 
 Container contains 6 elements.
-1: It is diagonal matrix! Number of rows (columns) = 4
+1: 
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
 Matrix:
 4	0	0	0	
 0	3	0	0	
 0	0	2	0	
 0	0	0	1	
 Sum of elements = 10
-2: It is diagonal matrix! Number of rows (columns) = 3
+2: 
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
 Matrix:
 4	0	0	
 0	3	0	
 0	0	5	
 Sum of elements = 12
-3: It is diagonal matrix! Number of rows (columns) = 3
+3: 
+It is line by line method of output
+It is low triangle matrix! Number of rows (columns) = 2
 Matrix:
-7	0	0	
-0	5	0	
-0	0	3	
-Sum of elements = 15
-4: It is diagonal matrix! Number of rows (columns) = 7
+7	0	
+5	1	
+Sum of elements = 13
+4: 
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
 Matrix:
-1	0	0	0	0	0	0	
-0	2	0	0	0	0	0	
-0	0	3	0	0	0	0	
-0	0	0	4	0	0	0	
-0	0	0	0	5	0	0	
-0	0	0	0	0	6	0	
-0	0	0	0	0	0	7	
-Sum of elements = 28
-5: It is a usual square matrix! Number of rows (columns) = 2
+1	0	0	
+2	3	0	
+4	5	6	
+Sum of elements = 21
+5: 
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
 Matrix:
 4	9	
 7	12	
 Sum of elements = 32
-6: It is a usual square matrix! Number of rows (columns) = 3
+6: 
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
 Matrix:
 12	45	78	
 23	56	89	
 87	54	21	
 Sum of elements = 465
+Only usual matrix. 
+5: It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+6: It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+Multimethod 
+--------------------------------------
+Diagonal matrix and diagonal matrix:
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+4	0	0	0	
+0	3	0	0	
+0	0	2	0	
+0	0	0	1	
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+4	0	0	
+0	3	0	
+0	0	5	
+--------------------------------------
+Diagonal matrix and triangle matrix:
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+4	0	0	0	
+0	3	0	0	
+0	0	2	0	
+0	0	0	1	
+It is line by line method of output
+It is low triangle matrix! Number of rows (columns) = 2
+Matrix:
+7	0	
+5	1	
+--------------------------------------
+Diagonal matrix and triangle matrix:
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+4	0	0	0	
+0	3	0	0	
+0	0	2	0	
+0	0	0	1	
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
+Matrix:
+1	0	0	
+2	3	0	
+4	5	6	
+--------------------------------------
+Diagonal matrix and usual matrix:
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+4	0	0	0	
+0	3	0	0	
+0	0	2	0	
+0	0	0	1	
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+--------------------------------------
+Diagonal matrix and usual matrix:
+It is method of output by columns
+It is diagonal matrix! Number of rows (columns) = 4
+Matrix:
+4	0	0	0	
+0	3	0	0	
+0	0	2	0	
+0	0	0	1	
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+--------------------------------------
+Diagonal matrix and triangle matrix:
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+4	0	0	
+0	3	0	
+0	0	5	
+It is line by line method of output
+It is low triangle matrix! Number of rows (columns) = 2
+Matrix:
+7	0	
+5	1	
+--------------------------------------
+Diagonal matrix and triangle matrix:
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+4	0	0	
+0	3	0	
+0	0	5	
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
+Matrix:
+1	0	0	
+2	3	0	
+4	5	6	
+--------------------------------------
+Diagonal matrix and usual matrix:
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+4	0	0	
+0	3	0	
+0	0	5	
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+--------------------------------------
+Diagonal matrix and usual matrix:
+It is method of output in shape of one-dimensional massiv
+It is diagonal matrix! Number of rows (columns) = 3
+Matrix:
+4	0	0	
+0	3	0	
+0	0	5	
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+--------------------------------------
+Triangle matrix and triangle matrix:
+It is line by line method of output
+It is low triangle matrix! Number of rows (columns) = 2
+Matrix:
+7	0	
+5	1	
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
+Matrix:
+1	0	0	
+2	3	0	
+4	5	6	
+--------------------------------------
+Triangle matrix and usual matrix:
+It is line by line method of output
+It is low triangle matrix! Number of rows (columns) = 2
+Matrix:
+7	0	
+5	1	
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+--------------------------------------
+Triangle matrix and usual matrix:
+It is line by line method of output
+It is low triangle matrix! Number of rows (columns) = 2
+Matrix:
+7	0	
+5	1	
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+--------------------------------------
+Triangle matrix and usual matrix:
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
+Matrix:
+1	0	0	
+2	3	0	
+4	5	6	
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+--------------------------------------
+Triangle matrix and usual matrix:
+It is method of output in shape of one-dimensional massiv
+It is low triangle matrix! Number of rows (columns) = 3
+Matrix:
+1	0	0	
+2	3	0	
+4	5	6	
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+--------------------------------------
+Usual matrix and usual matrix:
+It is method of output by columns
+It is a usual square matrix! Number of rows (columns) = 2
+Matrix:
+4	9	
+7	12	
+It is line by line method of output
+It is a usual square matrix! Number of rows (columns) = 3
+Matrix:
+12	45	78	
+23	56	89	
+87	54	21	
+--------------------------------------
 Empty container. 
 Container contains 0 elements.

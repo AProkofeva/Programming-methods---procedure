@@ -32,6 +32,8 @@ int main(int argc, char *argv[])
 	Out(cont, outFile);
 	outFile << "Only usual matrix. " << endl;
 	OutFirst(cont,outFile);
+	outFile << "Multimethod " << endl;
+	Multimethod(cont,outFile);
 	Clear(cont);
 	outFile << "Empty container. " << endl;
 	Out(cont, outFile);

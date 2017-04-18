@@ -63,3 +63,4 @@ void Sort(_container* &cont, int len);
 void Out(_container* &cont, ofstream &outFile);
 bool Compare(_matr *mas1, _matr *mas2);
 void OutFirst(_container* &cont, ofstream &outFile);
+void Multimethod(_container* &cont, ofstream &outFile);
