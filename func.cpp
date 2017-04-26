@@ -17,8 +17,9 @@ void CheckOut(ofstream &outFile)
 		exit(1);
 	}
 }
-int CheckNumber(ifstream &inFile, int number)
+int CheckNumber(ifstream &inFile)
 {
+    int number=0;
 	inFile >> number;
 	if (inFile.fail())
     {
@@ -76,7 +77,7 @@ void CheckTriangleSize(int size)
 // значения ключей для каждой из матриц
 void InSquare(_squareMatr* &mas, ifstream &inFile)
 {
-	mas->n = CheckNumber(inFile,mas->n);
+    mas->n = CheckNumber(inFile);
 	CheckSize(mas->n);
     mas->A = new int*[mas->n];
 	for (int i = 0; i < mas->n; ++i)
@@ -87,29 +88,29 @@ void InSquare(_squareMatr* &mas, ifstream &inFile)
 	{
 		for (int j = 0; j < mas->n; j++)
 		{
-			mas->A[i][j] = CheckNumber(inFile, mas->A[i][j]);
+            mas->A[i][j] = CheckNumber(inFile);
 		}
 	}
 }
 void InDiagonal(_diagonalMatr* &mas,ifstream &inFile)
 {
-	mas->n = CheckNumber(inFile,mas->n);
+    mas->n = CheckNumber(inFile);
 	CheckSize(mas->n);
 	mas->A = new int [mas->n];
 	for( int i = 0; i < mas->n; i++)
 	{
-		mas->A[i] = CheckNumber(inFile, mas->A[i]);
+        mas->A[i] = CheckNumber(inFile);
     }
 }
 void InTriangle(_triangleMatr* &mas,ifstream &inFile)
 {
-	mas->n = CheckNumber(inFile,mas->n);
+    mas->n = CheckNumber(inFile);
 	CheckSize(mas->n);
 	CheckTriangleSize(mas->n);
     mas->A = new int [mas->n];
     for( int i = 0; i < mas->n; i++)
     {
-		mas->A[i] = CheckNumber(inFile, mas->A[i]);
+        mas->A[i] = CheckNumber(inFile);
     }
 }
 void OutSquare(_squareMatr* &mas, ofstream &outFile)
@@ -172,10 +173,10 @@ _matr* ReadMas(ifstream& inFile)
 	_diagonalMatr *diag;
 	_triangleMatr *tri;
     int key = 0;
-	key = CheckNumber(inFile,key);
+    key = CheckNumber(inFile);
 	CheckType(key);
     int outmas = 0;
-	outmas = CheckNumber(inFile,outmas);
+    outmas = CheckNumber(inFile);
 	CheckType(outmas);
     switch (key)
     {
@@ -467,7 +468,7 @@ void Clear(_container* &cont)
 int In(_container* &cont, ifstream &inFile)
 {
     int len = 0;
-	len = CheckNumber(inFile,len);
+    len = CheckNumber(inFile);
 	if (len < 0)
     {
         cout << "Wrong count of elements ( must be > 0)!!!" << endl;
@@ -523,9 +524,7 @@ void Out(_container* &cont, ofstream &outFile)
 }
 bool Compare(_matr *mas1, _matr *mas2)
 {
-    int s = Sum(mas1);
-    int sk = Sum(mas2);
-    return (s>sk);
+    return (Sum(mas1)>Sum(mas2));
 }
 void Sort(_container* &cont, int len)
 {
